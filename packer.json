@@ -41,7 +41,8 @@
           "type": "docker-tag",
           "repository": "giorgioprevitera/dentsu_aegis_tech_test",
           "tag": "0.1.{{ user `build_number` }}"
-        }
+        },
+        "docker-push"
       ]
     ]
 }
