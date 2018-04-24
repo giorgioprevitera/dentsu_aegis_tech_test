@@ -17,8 +17,8 @@ ansiColor('xterm') {
         }
 
         stage('Test') {
-          sh "echo Testing container from image ${docker_repository_prefix}/${ci_image_name}:0.1.${BUILD_NUMBER}"
-          sh "export GOSS_SLEEP=2; dgoss run --rm ${docker_repository_prefix}/${ci_image_name}:0.1.${BUILD_NUMBER}"
+          sh "echo Testing container from image ${ci_image_name}:0.1.${BUILD_NUMBER}"
+          sh "export GOSS_SLEEP=2; dgoss run --rm ${ci_image_name}:0.1.${BUILD_NUMBER}"
         }
 
         stage('Publish') {
