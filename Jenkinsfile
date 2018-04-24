@@ -8,18 +8,15 @@ ansiColor('xterm') {
 
       try {
         stage('Build') {
-         sh "${packer}/packer build -var 'docker_repository_prefix=${docker_repository_prefix}' -var 'ci_image_name=${ci_image_name}' build.json"
+           sh "${packer}/packer build -var 'docker_repository_prefix=${docker_repository_prefix}' -var 'ci_image_name=${ci_image_name}' build.json"
         }
+
         stage('Test') {
           sh "echo Testing container from image ${docker_repository_prefix}/${ci_image_name}:0.1.${BUILD_NUMBER}"
           sh "export GOSS_SLEEP=2; dgoss run --rm ${docker_repository_prefix}/${ci_image_name}:0.1.${BUILD_NUMBER}"
         }
-      }
-      catch {
-        sh "echo Something went wrong, deleting artifacts"
-        sh "docker rmi --force ${docker_repository_prefix}/${ci_image_name}:0.1.${BUILD_NUMBER}"
-      }
-      finally {
+        } finally {
+
         stage('Cleanup') {
           cleanWs()
         }
