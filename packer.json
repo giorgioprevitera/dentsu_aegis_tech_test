@@ -26,7 +26,8 @@
       "type": "file",
       "source": "package.json",
       "destination": "/usr/src/app/package.json"
-    },
+    }
+  ],
 
     "post-processors": [
       [
