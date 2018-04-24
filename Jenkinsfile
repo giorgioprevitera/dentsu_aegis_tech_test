@@ -8,6 +8,9 @@ ansiColor('xterm') {
       git 'https://github.com/vilelm/dentsu_aegis_tech_test.git'
 
       try {
+        stage('Validate') {
+          sh "for f in build.json publish.json;do ${packer}/packer validate ${f};done"
+        }
         stage('Build') {
            sh "${packer}/packer build -var 'docker_repository_prefix=${docker_repository_prefix}' -var 'ci_image_name=${ci_image_name}' build.json"
         }
