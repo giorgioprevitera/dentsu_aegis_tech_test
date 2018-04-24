@@ -9,6 +9,7 @@ ansiColor('xterm') {
 
       try {
         stage('Validate') {
+          sh "echo Validating Packer templates"
           sh "for f in build.json publish.json;do ${packer}/packer validate \${f};done"
         }
         stage('Build') {
