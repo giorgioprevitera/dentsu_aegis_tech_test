@@ -28,7 +28,7 @@ ansiColor('xterm') {
           }
 
         stage('deploy') {
-          sh "sed -i 's/BUILD_NUMBER/${BUILD_NUMBER}/g deployment/deploy.yaml"
+          sh "sed -i 's/BUILD_NUMBER/${BUILD_NUMBER}/g' deployment/deploy.yaml"
           sh "kubectl apply -f deployment/deploy.yaml"
           sh "kubectl apply -f deployment/service.yaml"
         }
