@@ -34,12 +34,20 @@
     },
     {
       "type": "shell",
-      "inline": ["mkdir -p /usr/src/app && chown -R node:node /usr/src/app"]
+      "inline": [
+        "mkdir -p /usr/src/app && chown -R node:node /usr/src/app",
+        "mkdir /goss"
+      ]
     },
     {
       "type": "file",
       "source": "code/",
       "destination": "/usr/src/app"
+    },
+    {
+      "type": "file",
+      "source": "tests/goss.yaml",
+      "destination": "/goss/goss.yaml"
     }
   ],
 
