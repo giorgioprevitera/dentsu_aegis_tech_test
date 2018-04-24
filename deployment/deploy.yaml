@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: dentsuaegistechtest-app
-        image: dentsuaegistechtest/dentsuaegistechtest:BUILD_NUMBER
+        image: dentsuaegistechtest/dentsuaegistechtest:0.1.BUILD_NUMBER
         ports:
         - containerPort: 8080
