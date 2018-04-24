@@ -1,11 +1,14 @@
 ansiColor('xterm') {
   node {
       def packer = tool name: '1.2.2', type: 'biz.neustar.jenkins.plugins.packer.PackerInstallation'
+      def ci_image_name = "ci-dentsu-aegis-tech-test"
+      def docker_repository_prefix = "giorgioprevitera"
+      
       git 'https://github.com/vilelm/dentsu_aegis_tech_test.git'
 
       try {
         stage('Build') {
-           sh "${packer}/packer build packer.json"
+           sh "${packer}/packer build -var 'docker_repository_prefix=${docker_repository_prefix}' -var 'ci_image_name=${ci_image_name}' packer.json"
         }
 
         stage('Test') {

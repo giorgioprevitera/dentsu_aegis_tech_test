@@ -1,7 +1,8 @@
 {
 
   "variables": {
-    "build_number": "{{ env `BUILD_NUMBER` }}"
+    "build_number": "{{ env `BUILD_NUMBER` }}",
+    "code_dir": "/usr/src/app"
   },
 
   "builders": [{
@@ -16,7 +17,7 @@
       "/bin/sh"
     ],
     "changes": [
-      "WORKDIR /usr/src/app",
+      "WORKDIR {{ user `code_dir` }}",
       "EXPOSE 8080",
       "USER node",
       "CMD [\"npm\",\"start\"]"
@@ -27,13 +28,13 @@
     {
       "type": "shell",
       "inline": [
-        "mkdir -p /usr/src/app && chown -R node:node /usr/src/app"
+        "mkdir -p {{ user `code_dir` }} && chown -R node:node {{ user `code_dir` }}"
       ]
     },
     {
       "type": "file",
       "source": "code/",
-      "destination": "/usr/src/app"
+      "destination": "{{ user `code_dir` }}"
     }
   ],
 
@@ -41,7 +42,7 @@
       [
         {
           "type": "docker-tag",
-          "repository": "giorgioprevitera/dentsu_aegis_tech_test",
+          "repository": "{{ user `docker_repository_prefix` }}/{{ user `ci_image_name` }}",
           "tag": "0.1.{{ user `build_number` }}"
         }
       ]
