@@ -12,7 +12,7 @@ ansiColor('xterm') {
         sh "export GOSS_SLEEP=2; dgoss run --rm giorgioprevitera/dentsu_aegis_tech_test:0.1.${BUILD_NUMBER}"
       }
 
-      stage('Cleanup' {
+      stage('Cleanup') {
         cleanWs()
       }
   }
