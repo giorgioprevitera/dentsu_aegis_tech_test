@@ -25,6 +25,10 @@
 
   "provisioners": [
     {
+      "type": "shell",
+      "inline": ["mkdir -p /usr/src/app && chmod -R node:node /usr/src/app"]
+    },
+    {
       "type": "file",
       "source": "index.js",
       "destination": "/usr/src/app/index.js"
