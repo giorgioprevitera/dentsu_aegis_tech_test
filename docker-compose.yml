@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  app:
+    image: dentsu_aegis_tech_test:0.5.0
+    ports: 
+      - 8080
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure

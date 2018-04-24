@@ -1,0 +1,11 @@
+{
+  "name": "dentsu_aegis_tech_test",
+  "version": "1.0.0",
+  "description": "dentsu_aegis_tech_test",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Giorgio Previtera",
+  "license": "ISC"
+}
