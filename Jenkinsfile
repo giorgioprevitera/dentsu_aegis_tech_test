@@ -10,6 +10,7 @@ ansiColor('xterm') {
 
         stage('Test') {
           sh "echo Testing container from image giorgioprevitera/dentsu_aegis_tech_test:0.1.${BUILD_NUMBER}"
+          sh "echo $PATH"
           sh "export GOSS_SLEEP=2; dgoss run --rm giorgioprevitera/dentsu_aegis_tech_test:0.1.${BUILD_NUMBER}"
         }
         } finally {
