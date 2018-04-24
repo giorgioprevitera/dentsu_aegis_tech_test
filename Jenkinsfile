@@ -8,7 +8,7 @@ ansiColor('xterm') {
 
       try {
         stage('Build') {
-           sh "${packer}/packer build -var 'docker_repository_prefix=${docker_repository_prefix}' -var 'ci_image_name=${ci_image_name}' packer.json"
+           sh "${packer}/packer build -var 'docker_repository_prefix=${docker_repository_prefix}' -var 'ci_image_name=${ci_image_name}' build.json"
         }
 
         stage('Test') {
