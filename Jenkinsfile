@@ -3,7 +3,7 @@ ansiColor('xterm') {
       def packer = tool name: '1.2.2', type: 'biz.neustar.jenkins.plugins.packer.PackerInstallation'
       def ci_image_name = "ci-dentsu-aegis-tech-test"
       def docker_repository_prefix = "giorgioprevitera"
-      
+
       git 'https://github.com/vilelm/dentsu_aegis_tech_test.git'
 
       try {
@@ -12,8 +12,8 @@ ansiColor('xterm') {
         }
 
         stage('Test') {
-          sh "echo Testing container from image giorgioprevitera/dentsu_aegis_tech_test:0.1.${BUILD_NUMBER}"
-          sh "export GOSS_SLEEP=2; dgoss run --rm giorgioprevitera/dentsu_aegis_tech_test:0.1.${BUILD_NUMBER}"
+          sh "echo Testing container from image ${docker_repository_prefix}/${ci_image_name}:0.1.${BUILD_NUMBER}"
+          sh "export GOSS_SLEEP=2; dgoss run --rm ${docker_repository_prefix}/${ci_image_name}:0.1.${BUILD_NUMBER}"
         }
         } finally {
 
