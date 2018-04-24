@@ -16,8 +16,10 @@ ansiColor('xterm') {
         }
       }
       catch {
-        sh "echo Something went wrong, deleting artifacts"
-        sh "docker rmi --force ${docker_repository_prefix}/${ci_image_name}:0.1.${BUILD_NUMBER}"
+        stage('Cleanup') {
+          sh "echo Something went wrong, deleting artifacts"
+          sh "docker rmi --force ${docker_repository_prefix}/${ci_image_name}:0.1.${BUILD_NUMBER}"
+        }
       }
       finally {
         stage('Cleanup') {
