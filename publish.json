@@ -1,0 +1,30 @@
+{
+
+  "variables": {
+    "build_number": "{{ env `BUILD_NUMBER` }}",
+  },
+
+  "builders": [{
+    "type": "docker",
+    "image": "{{ user `docker_repository_prefix` }}/{{ user `image_name` }}:0.1.{{ user `build_number` }}",
+    "commit": "true",
+    "run_command": [
+      "-d",
+      "-i",
+      "-t",
+      "{{.Image}}",
+      "/bin/sh"
+    ],
+  }],
+
+    "post-processors": [
+      [
+        {
+          "type": "docker-tag",
+          "repository": "{{ user `docker_repository_prefix` }}/{{ user `image_name` }}",
+          "tag": "0.1.{{ user `build_number` }}"
+        },
+        "docker-push"
+      ]
+    ]
+}
