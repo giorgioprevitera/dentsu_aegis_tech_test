@@ -30,6 +30,7 @@ ansiColor('xterm') {
         } finally {
 
         stage('Cleanup') {
+          sh "docker rmi ${ci_image_name}:0.1.${BUILD_NUMBER}"
           cleanWs()
         }
       }
