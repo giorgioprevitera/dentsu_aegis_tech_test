@@ -13,7 +13,7 @@ ansiColor('xterm') {
           sh "for f in packer-templates/*.json;do ${packer}/packer validate \${f};done"
         }
         stage('Build') {
-           sh "${packer}/packer build -var 'docker_repository_prefix=${docker_repository_prefix}' -var 'ci_image_name=${ci_image_name}' packer-templates/build.json"
+           sh "${packer}/packer build -var 'ci_image_name=${ci_image_name}' packer-templates/build.json"
         }
 
         stage('Test') {
@@ -22,7 +22,7 @@ ansiColor('xterm') {
         }
 
         stage('Publish') {
-          sh "${packer}/packer build -var 'docker_repository_prefix=${docker_repository_prefix}' -var 'image_name=${image_name}' packer-templates/publish.json"
+          sh "${packer}/packer build  -var 'ci_image_name=${ci_image_name}' -var 'docker_repository_prefix=${docker_repository_prefix}' -var 'image_name=${image_name}' packer-templates/publish.json"
         }
         } finally {
 

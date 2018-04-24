@@ -42,7 +42,7 @@
       [
         {
           "type": "docker-tag",
-          "repository": "{{ user `docker_repository_prefix` }}/{{ user `ci_image_name` }}",
+          "repository": "{{ user `ci_image_name` }}",
           "tag": "0.1.{{ user `build_number` }}"
         }
       ]

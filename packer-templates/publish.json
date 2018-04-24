@@ -7,7 +7,7 @@
 
   "builders": [{
     "type": "docker",
-    "image": "{{ user `docker_repository_prefix` }}/{{ user `image_name` }}:0.1.{{ user `build_number` }}",
+    "image": "{{ user `ci_image_name` }}:0.1.{{ user `build_number` }}",
     "commit": "true",
     "run_command": [
       "-d",
