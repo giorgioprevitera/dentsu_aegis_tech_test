@@ -22,7 +22,9 @@ ansiColor('xterm') {
         }
 
         stage('Publish') {
-          sh "${packer}/packer build  -var 'ci_image_name=${ci_image_name}' -var 'docker_repository_prefix=${docker_repository_prefix}' -var 'image_name=${image_name}' packer-templates/publish.json"
+          withDockerRegistry([ credentialsId: "9030e075-64f8-4e1d-8d2d-6a50cbda07cf", url: "" ]) {
+            sh "${packer}/packer build  -var 'ci_image_name=${ci_image_name}' -var 'docker_repository_prefix=${docker_repository_prefix}' -var 'image_name=${image_name}' packer-templates/publish.json"
+          }
         }
         } finally {
 
