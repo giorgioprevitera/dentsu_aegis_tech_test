@@ -3,7 +3,6 @@ node {
     git 'https://github.com/vilelm/dentsu_aegis_tech_test.git'
     
     stage('Preparation') { 
-       sh "${packer}/packer -version"
-       sh "cat Dockerfile"
+       sh "${packer}/packer build packer.json"
     }
 }
