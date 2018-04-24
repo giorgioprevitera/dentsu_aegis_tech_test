@@ -30,8 +30,8 @@
     },
     {
       "type": "file",
-      "source": "index.js",
-      "destination": "/usr/src/app/index.js"
+      "source": "code/",
+      "destination": "/usr/src/app"
     },
     {
       "type": "file",
