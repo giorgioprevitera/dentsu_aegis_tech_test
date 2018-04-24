@@ -1,0 +1,21 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: dentsuaegistechtest-app
+  labels:
+    app: dentsuaegistechtest-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dentsuaegistechtest-app
+  template:
+    metadata:
+      labels:
+        app: dentsuaegistechtest-app
+    spec:
+      containers:
+      - name: dentsuaegistechtest-app
+        image: dentsuaegistechtest/dentsuaegistechtest:BUILD_NUMBER
+        ports:
+        - containerPort: 8080

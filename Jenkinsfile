@@ -26,6 +26,12 @@ ansiColor('xterm') {
             sh "docker tag ${ci_image_name}:0.1.${BUILD_NUMBER} ${docker_repository_prefix}/${image_name}:0.1.${BUILD_NUMBER}"
             sh "docker push ${docker_repository_prefix}/${image_name}:0.1.${BUILD_NUMBER}"
           }
+
+        stage('deploy') {
+          sh "sed -i 's/BUILD_NUMBER/${BUILD_NUMBER}/g deployment/deploy.yaml"
+          sh "kubectl apply -f deployment/deploy.yaml"
+          sh "kubectl apply -f deployment/service.yaml"
+        }
         }
         } finally {
 
