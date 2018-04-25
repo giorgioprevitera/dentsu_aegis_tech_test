@@ -8,10 +8,12 @@ ansiColor('xterm') {
       git 'https://github.com/vilelm/dentsu_aegis_tech_test.git'
 
       try {
+      
         stage('Validate') {
           sh "echo Validating Packer templates"
           sh "for f in packer-templates/*.json;do ${packer}/packer validate \${f};done"
         }
+
         stage('Build') {
            sh "${packer}/packer build -var 'ci_image_name=${ci_image_name}' packer-templates/build.json"
         }
@@ -26,19 +28,21 @@ ansiColor('xterm') {
             sh "docker tag ${ci_image_name}:0.1.${BUILD_NUMBER} ${docker_repository_prefix}/${image_name}:0.1.${BUILD_NUMBER}"
             sh "docker push ${docker_repository_prefix}/${image_name}:0.1.${BUILD_NUMBER}"
           }
+        }
 
         stage('deploy') {
           sh "sed -i 's/BUILD_NUMBER/${BUILD_NUMBER}/g' deployment/deploy.yaml"
           sh "kubectl apply -f deployment/deploy.yaml"
           sh "kubectl apply -f deployment/service.yaml"
         }
-        }
-        } finally {
+
+      } finally {
 
         stage('Cleanup') {
           sh "docker rmi ${ci_image_name}:0.1.${BUILD_NUMBER}"
           cleanWs()
         }
+
       }
   }
 }
